@@ -41,11 +41,29 @@ if (cardsInPlay.length === 2) {
 
 
 function flipCard(cardId) {
-	var card = cards[cardId].rank;
-	cardsInPlay.push(cards[cardId]);
-	console.log("User flipped " + card);
-	console.log(cards[cardId].cardImage);
-	console.log(cards[cardId].suit);
-	checkForMatch(card);
+	//var cardID = this.getAttribute('data-id');
+	console.log(cardId);
+	//var card = cards[cardId].rank;
+	cardsInPlay.push(cards[cardId].rank);
+	this.setAttribute('src', cards[cardID].cardImage);
+	if (cardsInPlay.length===2) {
+		checkForMatch();
+	};
+	// console.log("User flipped " + card);
+	// console.log(cards[cardId].cardImage);
+	// console.log(cards[cardId].suit);
+	// checkForMatch(card);
+
+};
+
+function createBoard(){
+	for (var i=0; i< cards.length; i++) {
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src', 'images/back.png');
+		cardElement.setAttribute('data-id', i);
+		cardElement.addEventListener('click', flipCard);
+		cardTable.appendChild(cardElement);
+
+	}
 
 };
